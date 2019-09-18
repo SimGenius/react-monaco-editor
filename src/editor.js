@@ -15,7 +15,9 @@ class MonacoEditor extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { value, language, theme, height, options, width } = this.props;
-
+    if (!this.editor) {
+      return;
+    }
     const { editor } = this;
     const model = editor.getModel();
 

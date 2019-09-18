@@ -1,6 +1,6 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/2723376/55211710-2f76e000-5228-11e9-887b-67faca78c4b9.png" width="150" height="150" /></p>
 
-<h1 align="center">react-monaco-editor</h1>
+<h1 align="center">react-monaco-editor-amd</h1>
 
 <div align="center">
 
@@ -34,7 +34,7 @@ Then open `http://localhost:8886` in a browser.
 ## Installation
 
 ```bash
-yarn add react-monaco-editor
+yarn add react-monaco-editor-amd
 ```
 
 ## Using with Webpack

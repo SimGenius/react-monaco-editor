@@ -1,4 +1,4 @@
-import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
+// import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import PropTypes from "prop-types";
 import React from "react";
 import { noop, processSize } from "./utils";
@@ -15,7 +15,9 @@ class MonacoDiffEditor extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { language, theme, height, options, width } = this.props;
-
+    if (!this.editor) {
+      return;
+    }
     const { original, modified } = this.editor.getModel();
 
     if (this.props.original !== original.getValue()) {
@@ -96,19 +98,21 @@ class MonacoDiffEditor extends React.Component {
       this.props.value != null ? this.props.value : this.props.defaultValue;
     const { original, theme, options, overrideServices } = this.props;
     if (this.containerElement) {
-      // Before initializing monaco editor
-      this.editorWillMount();
-      this.editor = monaco.editor.createDiffEditor(
-        this.containerElement,
-        {
-          ...options,
-          ...(theme ? { theme } : {})
-        },
-        overrideServices
-      );
-      // After initializing monaco editor
-      this.initModels(value, original);
-      this.editorDidMount(this.editor);
+      window.require(["vs/editor/editor.main"], () => {
+        // Before initializing monaco editor
+        this.editorWillMount();
+        this.editor = monaco.editor.createDiffEditor(
+          this.containerElement,
+          {
+            ...options,
+            ...(theme ? { theme } : {})
+          },
+          overrideServices
+        );
+        // After initializing monaco editor
+        this.initModels(value, original);
+        this.editorDidMount(this.editor);
+      })
     }
   }
 
