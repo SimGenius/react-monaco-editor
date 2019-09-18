@@ -1,4 +1,4 @@
-import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
+// import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 import PropTypes from "prop-types";
 import React from "react";
 import { noop, processSize } from "./utils";
@@ -72,19 +72,22 @@ class MonacoEditor extends React.Component {
     const { language, theme, options, overrideServices } = this.props;
     if (this.containerElement) {
       // Before initializing monaco editor
-      Object.assign(options, this.editorWillMount());
-      this.editor = monaco.editor.create(
-        this.containerElement,
-        {
-          value,
-          language,
-          ...options,
-          ...(theme ? { theme } : {})
-        },
-        overrideServices
-      );
-      // After initializing monaco editor
-      this.editorDidMount(this.editor);
+      window.require(["vs/editor/editor.main"], () => {
+        // ...
+        Object.assign(options, this.editorWillMount());
+        this.editor = monaco.editor.create(
+          this.containerElement,
+          {
+            value,
+            language,
+            ...options,
+            ...(theme ? { theme } : {})
+          },
+          overrideServices
+        );
+        // After initializing monaco editor
+        this.editorDidMount(this.editor);
+      });
     }
   }
 

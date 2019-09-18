@@ -3,10 +3,26 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <script src="//simgenius-resource.oss-cn-beijing.aliyuncs.com/common/monaco-editor/min/vs/loader.js"></script>
+        <script>
+          const monacoEditorBasePath = 'YOUR_CDN_PATH'
+          require.config({ paths: { 'vs': monacoEditorBasePath+'/vs' }});
+          window.MonacoEnvironment = {
+            getWorkerUrl: function(workerId, label) {
+              return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+              self.MonacoEnvironment = {
+                baseUrl: '${monacoEditorBasePath}'
+              };
+              importScripts('${monacoEditorBasePath}/vs/base/worker/workerMain.js');`
+              )}`;
+            }
+          };
+        </script>
     </head>
 
     <body>
         <div id="root" style="display: inline-block; border:1px solid grey"></div>
         <script src="./index.js"></script>
     </body>
+
 </html>

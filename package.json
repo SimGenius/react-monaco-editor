@@ -1,6 +1,6 @@
 {
-  "name": "react-monaco-editor",
-  "version": "0.31.0",
+  "name": "react-monaco-editor-amd",
+  "version": "0.0.1",
   "description": "Monaco Editor for React",
   "main": "lib/index.js",
   "module": "lib/index",
@@ -29,10 +29,10 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/react-monaco-editor/react-monaco-editor/issues"
+    "url": "https://github.com/SimGenius/react-monaco-editor-amd/issues"
   },
-  "homepage": "https://github.com/react-monaco-editor/react-monaco-editor",
-  "repository": "https://github.com/react-monaco-editor/react-monaco-editor",
+  "homepage": "https://github.com/SimGenius/react-monaco-editor-amd",
+  "repository": "https://github.com/SimGenius/react-monaco-editor-amd",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
