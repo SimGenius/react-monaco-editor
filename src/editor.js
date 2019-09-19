@@ -7,6 +7,9 @@ class MonacoEditor extends React.Component {
   constructor(props) {
     super(props);
     this.containerElement = undefined;
+    this.state = {
+      loading: false
+    }
   }
 
   componentDidMount() {
@@ -100,6 +103,9 @@ class MonacoEditor extends React.Component {
   }
 
   editorDidMount(editor) {
+    this.setState({
+      loading: false
+    })
     this.props.editorDidMount(editor, monaco);
 
     this._subscription = editor.onDidChangeModelContent(event => {
@@ -123,7 +129,9 @@ class MonacoEditor extends React.Component {
         ref={this.assignRef}
         style={style}
         className="react-monaco-editor-container"
-      />
+      >
+        {this.state.loading && this.props.renderLoading()}
+      </div>
     );
   }
 }
@@ -139,7 +147,8 @@ MonacoEditor.propTypes = {
   overrideServices: PropTypes.object,
   editorDidMount: PropTypes.func,
   editorWillMount: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  renderLoading: PropTypes.func
 };
 
 MonacoEditor.defaultProps = {
@@ -153,7 +162,8 @@ MonacoEditor.defaultProps = {
   overrideServices: {},
   editorDidMount: noop,
   editorWillMount: noop,
-  onChange: noop
+  onChange: noop,
+  renderLoading: () => {}
 };
 
 export default MonacoEditor;

@@ -1,6 +1,6 @@
 {
   "name": "@simgenius/react-monaco-editor-amd",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Monaco Editor for React",
   "main": "lib/index.js",
   "module": "lib/index",
